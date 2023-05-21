@@ -1,8 +1,10 @@
+import Header from "./components/layout/header"
+
 function App() {
 
   return (
     <div>
-      teste
+      <Header />
     </div>
   )
 }

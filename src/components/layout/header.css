@@ -1,0 +1,12 @@
+.header{
+    background-color: #282c34;
+    color: white;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-cloud{
+    margin-right: 1.5em;
+}
