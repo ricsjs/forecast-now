@@ -62,3 +62,17 @@
 .btn-search svg:hover{
     color: black;
 }
+
+.infos{
+    display: flex;
+    align-items: center;
+}
+
+.pngTemp{
+    vertical-align: middle;
+}
+
+.infos span{
+    font-size: 20px;
+    color: #282c34;
+}

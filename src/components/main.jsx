@@ -20,6 +20,7 @@ function Main() {
                 }
             });
             setWeatherData(response.data);
+            setCity('');
         } catch (error) {
             setError("Erro ao obter os dados do clima. Por favor, tente novamente.");
         }
@@ -30,10 +31,12 @@ function Main() {
         showInfo();
     };
 
+    const pngTemp = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
+
     return (
         <div className='container'>
             <div className='content'>
-                <h2 className='title'>Previsão do tempo agora</h2>
+                <h2 className='title'>Weather Forecast Now</h2>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className='form-content'>
                         <div className='input'>
@@ -45,17 +48,16 @@ function Main() {
                             />
                         </div>
                         <div className='search'>
-                            <button className='btn-search' type='submit'><BsSearch/></button>
+                            <button className='btn-search' type='submit'><BsSearch /></button>
                         </div>
                     </div>
                 </form>
 
                 {weatherData && (
-                    <div>
-                        <p>Temperatura: {weatherData.main.temp}°C</p>
-                        <p>Descrição: {weatherData.weather[0].description}</p>
-                        <p>Icon: {weatherData.weather[0].icon}</p>
-                        {/* Exibir mais informações do clima, se necessário */}
+                    <div className='infos'>
+                        <div>
+                            <span><img className='pngTemp' src={pngTemp}/> {weatherData.name}, {weatherData.main.temp}ºC, {weatherData.weather[0].description}</span>
+                        </div>
                     </div>
                 )}
 
