@@ -82,3 +82,8 @@
     font-size: 15px;
     color: #282c34;
 }
+
+.divHumidity{
+    display: flex;
+    align-items: center;
+}

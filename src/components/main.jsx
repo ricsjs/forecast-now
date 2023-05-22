@@ -3,6 +3,7 @@ import api from '../services/api'
 import { useState } from 'react';
 
 import { BsSearch } from 'react-icons/bs'
+import { WiHumidity } from 'react-icons/wi'
 
 function Main() {
     const [city, setCity] = useState('');
@@ -38,6 +39,18 @@ function Main() {
     //consulta: https://api.openweathermap.org/data/2.5/weather?q=london&appid=d54d9d02c25c79b822c4d38bbc3a1e47&lang=pt_br
     //link api: https://openweathermap.org/current
 
+    let messageHumidity = '';
+    if (weatherData && weatherData.main && weatherData.main.humidity) {
+        if (weatherData.main.humidity <= 33) {
+            messageHumidity = 'Baixas probabilidades de chuva';
+        } else if (weatherData.main.humidity > 33 && weatherData.main.humidity < 66) {
+            messageHumidity = 'Probabilidade média de chuva';
+        } else if (weatherData.main.humidity >= 66) {
+            messageHumidity = 'Altas probabilidades de chuva';
+        }
+    }
+
+
     return (
         <div className='container'>
             <div className='content'>
@@ -62,10 +75,10 @@ function Main() {
                     <div className='infos'>
                         <div>
                             <span className='span'>
-                                <img className='pngTemp' src={pngTemp} />
+                                <img className='pngTemp' src={pngTemp} alt='Weather Icon' />
                                 {weatherData.sys.country},&nbsp;
                                 {weatherData.name},&nbsp;
-                                {weatherData.main.temp}ºC,&nbsp; 
+                                {weatherData.main.temp}ºC,&nbsp;
                                 {weatherData.weather[0].description}
                             </span>
                         </div>
@@ -74,8 +87,13 @@ function Main() {
                                 Max Temperature {weatherData.main.temp_max}ºC | Min Temperature {weatherData.main.temp_min}ºC
                             </span>
                         </div>
-                        <div>
-                            <span className='spanMin'>Humidity {weatherData.main.humidity}%</span>
+                        <div className='divHumidity'>
+                            <div>
+                                <WiHumidity size={26} color='#282c34' />
+                            </div>
+                            <div>
+                                <span className='spanMin'>Humidity {weatherData.main.humidity}% | {messageHumidity}</span>
+                            </div>
                         </div>
                     </div>
                 )}
