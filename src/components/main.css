@@ -66,13 +66,19 @@
 .infos{
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .pngTemp{
     vertical-align: middle;
 }
 
-.infos span{
+.span{
     font-size: 20px;
+    color: #282c34;
+}
+
+.spanMin{
+    font-size: 15px;
     color: #282c34;
 }

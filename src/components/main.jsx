@@ -32,12 +32,12 @@ function Main() {
     };
 
     const pngTemp = weatherData && weatherData.weather[0].icon
-    ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
-    : null;
+        ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
+        : null;
 
     //consulta: https://api.openweathermap.org/data/2.5/weather?q=london&appid=d54d9d02c25c79b822c4d38bbc3a1e47&lang=pt_br
     //link api: https://openweathermap.org/current
-    
+
     return (
         <div className='container'>
             <div className='content'>
@@ -51,7 +51,7 @@ function Main() {
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                             />
-                        </div>  
+                        </div>
                         <div className='search'>
                             <button className='btn-search' type='submit'><BsSearch /></button>
                         </div>
@@ -61,7 +61,21 @@ function Main() {
                 {weatherData && (
                     <div className='infos'>
                         <div>
-                            <span><img className='pngTemp' src={pngTemp}/> {weatherData.name}, {weatherData.main.temp}ºC, {weatherData.weather[0].description}</span>
+                            <span className='span'>
+                                <img className='pngTemp' src={pngTemp} />
+                                {weatherData.sys.country},&nbsp;
+                                {weatherData.name},&nbsp;
+                                {weatherData.main.temp}ºC,&nbsp; 
+                                {weatherData.weather[0].description}
+                            </span>
+                        </div>
+                        <div>
+                            <span className='spanMin'>
+                                Max Temperature {weatherData.main.temp_max}ºC | Min Temperature {weatherData.main.temp_min}ºC
+                            </span>
+                        </div>
+                        <div>
+                            <span className='spanMin'>Humidity {weatherData.main.humidity}%</span>
                         </div>
                     </div>
                 )}
