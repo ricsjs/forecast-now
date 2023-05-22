@@ -31,8 +31,13 @@ function Main() {
         showInfo();
     };
 
-    const pngTemp = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
+    const pngTemp = weatherData && weatherData.weather[0].icon
+    ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
+    : null;
 
+    //consulta: https://api.openweathermap.org/data/2.5/weather?q=london&appid=d54d9d02c25c79b822c4d38bbc3a1e47&lang=pt_br
+    //link api: https://openweathermap.org/current
+    
     return (
         <div className='container'>
             <div className='content'>
@@ -46,7 +51,7 @@ function Main() {
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                             />
-                        </div>
+                        </div>  
                         <div className='search'>
                             <button className='btn-search' type='submit'><BsSearch /></button>
                         </div>
