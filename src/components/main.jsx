@@ -22,6 +22,7 @@ function Main() {
             });
             setWeatherData(response.data);
             setCity('');
+            setError(null)
         } catch (error) {
             setError("Erro ao obter os dados do clima. Por favor, tente novamente.");
         }
@@ -95,7 +96,7 @@ function Main() {
                     </div>
                 )}
 
-                {error && <p>{error}</p>}
+                {error && <p style={{color:"red"}}>{error}</p>}
             </div>
         </div>
     );
