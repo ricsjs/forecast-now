@@ -76,15 +76,15 @@ function Main() {
                         <div>
                             <span className='span'>
                                 <img className='pngTemp' src={pngTemp} alt='Weather Icon' />
-                                {weatherData.sys.country},&nbsp;
+                                <b>{weatherData.sys.country},&nbsp;
                                 {weatherData.name},&nbsp;
                                 {weatherData.main.temp}ºC,&nbsp;
-                                {weatherData.weather[0].description}
+                                {weatherData.weather[0].description}</b>
                             </span>
                         </div>
                         <div>
                             <span className='spanMin'>
-                                Max Temperature {weatherData.main.temp_max}ºC | Min Temperature {weatherData.main.temp_min}ºC
+                                A sensação térmica em <b>{weatherData.name}</b> é de <b>{weatherData.main.feels_like}ºC</b>
                             </span>
                         </div>
                         <div className='divHumidity'>
