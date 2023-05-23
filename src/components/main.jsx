@@ -59,7 +59,7 @@ function Main() {
     return (
         <div className='container'>
             <div className='content'>
-                <h2 className='title'>Configura a Previsão do Tempo Agora</h2>
+                <h2 className='title'>Confira a Previsão do Tempo Agora</h2>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className='form-content'>
                         <div className='input'>
