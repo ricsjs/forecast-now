@@ -34,10 +34,7 @@ function Main() {
 
     const pngTemp = weatherData && weatherData.weather[0].icon
         ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
-        : null;
-
-    //consulta: https://api.openweathermap.org/data/2.5/weather?q=london&appid=d54d9d02c25c79b822c4d38bbc3a1e47&lang=pt_br
-    //link api: https://openweathermap.org/current
+        : null
 
     let messageHumidity = '';
     if (weatherData && weatherData.main && weatherData.main.humidity) {
@@ -54,12 +51,12 @@ function Main() {
     return (
         <div className='container'>
             <div className='content'>
-                <h2 className='title'>Weather Forecast Now</h2>
+                <h2 className='title'>Configura a Previsão do Tempo Agora</h2>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className='form-content'>
                         <div className='input'>
                             <input
-                                placeholder='Type a city name...'
+                                placeholder='Digite uma cidade...'
                                 type="text"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
