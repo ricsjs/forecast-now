@@ -4,13 +4,16 @@ import { useState } from 'react';
 
 import { BsSearch } from 'react-icons/bs'
 import { WiHumidity } from 'react-icons/wi'
+import { FaSpinner } from 'react-icons/fa'
 
 function Main() {
     const [city, setCity] = useState('');
     const [weatherData, setWeatherData] = useState(null);
     const [error, setError] = useState(null);
+    const [load, setLoad] = useState(false);
 
     const showInfo = async () => {
+        setLoad(true)
         try {
             const response = await api.get("/weather", {
                 params: {
@@ -23,15 +26,19 @@ function Main() {
             setWeatherData(response.data);
             setCity('');
             setError(null)
+            setLoad(false)
         } catch (error) {
             setError("Erro ao obter os dados do clima. Por favor, tente novamente.");
+            setLoad(false)
         }
     };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
         showInfo();
     };
+    
 
     const pngTemp = weatherData && weatherData.weather[0].icon
         ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`
@@ -64,7 +71,16 @@ function Main() {
                             />
                         </div>
                         <div className='search'>
-                            <button className='btn-search' type='submit'><BsSearch /></button>
+                            {load ? (
+                                <button className='btn-search' type='submit'>
+                                    <FaSpinner />
+                                </button>
+                            ) : (
+                                <button className='btn-search' type='submit'>
+                                    <BsSearch />
+                                </button>
+                            )}
+
                         </div>
                     </div>
                 </form>
@@ -75,9 +91,9 @@ function Main() {
                             <span className='span'>
                                 <img className='pngTemp' src={pngTemp} alt='Weather Icon' />
                                 <b>{weatherData.sys.country},&nbsp;
-                                {weatherData.name},&nbsp;
-                                {weatherData.main.temp}ºC,&nbsp;
-                                {weatherData.weather[0].description}</b>
+                                    {weatherData.name},&nbsp;
+                                    {weatherData.main.temp}ºC,&nbsp;
+                                    {weatherData.weather[0].description}</b>
                             </span>
                         </div>
                         <div>
@@ -96,7 +112,7 @@ function Main() {
                     </div>
                 )}
 
-                {error && <p style={{color:"red"}}>{error}</p>}
+                {error && <p style={{ color: "red" }}>{error}</p>}
             </div>
         </div>
     );
